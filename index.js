@@ -11,9 +11,11 @@ app.get("/nse/:symbol", async (req, res) => {
   try {
     const response = await fetch(url, {
       headers: {
-        "User-Agent": "Mozilla/5.0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
         "Accept": "*/*",
-        "Referer": "https://www.nseindia.com/"
+        "Referer": "https://www.nseindia.com/",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Connection": "keep-alive"
       }
     });
     const data = await response.json();
@@ -23,7 +25,7 @@ app.get("/nse/:symbol", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
-  console.log("Proxy running on port", PORT);
+  console.log(`✅ NSE Proxy live on port ${PORT}`);
 });
